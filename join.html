@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>دعوة المتجر | GoldIndex</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #0b0b0c;
+      color: #f5f5f5;
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 24px;
+    }
+    h1 { color: #dfb76c; font-size: 1.4rem; }
+    a { color: #dfb76c; }
+    p { color: #b0b0b0; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>مؤشر الذهب | GoldIndex</h1>
+    <p id="status">جاري فتح التطبيق… / Opening the app…</p>
+    <p id="fallback" style="display:none">
+      إذا لم يفتح التطبيق، ثبّته ثم اضغط الرابط مرة أخرى.<br>
+      If the app did not open, install GoldIndex and tap the invite again.
+    </p>
+  </main>
+  <script>
+    (function () {
+      var token = new URLSearchParams(window.location.search).get('token') || '';
+      if (!token) return;
+      window.location.replace('goldindex://join?token=' + encodeURIComponent(token));
+      setTimeout(function () {
+        var fallback = document.getElementById('fallback');
+        if (fallback) fallback.style.display = 'block';
+      }, 1400);
+    })();
+  </script>
+</body>
+</html>
